@@ -6,29 +6,28 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Player
+    class Character
     {
-        private int coordinatX;
-        private int coordinateY;
-        private int speed = 1;
+        public int CoordinateY { get; set; }
+        public int Speed { get; set; }
 
-        public Player()
+        public Character()
         {
-            speed = 1;
-            coordinatX = 3;
+            Speed = 1;
+            CoordinateY = 9;
         }
 
         public void MoveUp()
         {
-            coordinateY += speed;
+            CoordinateY += Speed;
         }
 
         public void MoveDown()
         {
-            coordinateY -= speed;
+            CoordinateY -= Speed;
         }
 
-
+        
 
     }
 }

@@ -9,7 +9,7 @@ namespace Pong
     class GameBoard
     {
         private char[,] screen;
-
+        
         public GameBoard(int width, int height)
         {
             screen = new char[height, width];
@@ -18,9 +18,7 @@ namespace Pong
         public void DrawScreen()
         {
             CursorSettings();
-            ClearScreen();
             DrawBorders();
-            
             for (int i = 0; i < screen.GetLength(0); i++)
             {
                 for (int j = 0; j < screen.GetLength(1); j++)
@@ -31,7 +29,7 @@ namespace Pong
             }
         }
 
-        private void ClearScreen()
+        public void ClearScreen()
         {
             for (int i = 0; i < screen.GetLength(0); i++)
             {
@@ -68,6 +66,34 @@ namespace Pong
                 screen[screen.GetLength(0) - 1, i] = '█';
             }
         }
+        
+        public void DrawCharacter(int coorY, bool isPlayer)
+        {
+            //Characters are placed on the screen
+            if (isPlayer)
+            {
+                screen[coorY, 3] = '█';
+                screen[coorY + 1, 3] = '█';
+                screen[coorY + 2, 3] = '█';
+                screen[coorY + 3, 3] = '█';
+                screen[coorY + 4, 3] = '█';
+                screen[coorY + 5, 3] = '█';
+            }
+            else
+            {
+                screen[coorY, screen.GetLength(1) - 4] = '█';
+                screen[coorY + 1, screen.GetLength(1) - 4] = '█';
+                screen[coorY + 2, screen.GetLength(1) - 4] = '█';
+                screen[coorY + 3, screen.GetLength(1) - 4] = '█';
+                screen[coorY + 4, screen.GetLength(1) - 4] = '█';
+                screen[coorY + 5, screen.GetLength(1) - 4] = '█';
+            }
+        }
 
+        public void DrawBall(int coorY, int coorX)
+        {
+            //Ball is placed on the screen
+            screen[coorY,coorX] = '█';
+        }
     }
 }
