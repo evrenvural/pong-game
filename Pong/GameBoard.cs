@@ -53,7 +53,7 @@ namespace Pong
             {
                 //Draw left borders
                 screen[i, 0] = '█';
-                //Draw right borders
+                // Draw right borders
                 screen[i,screen.GetLength(1)-1] = '█';
             }
 
@@ -67,26 +67,26 @@ namespace Pong
             }
         }
         
-        public void DrawCharacter(int coorY, bool isPlayer)
+        public void DrawCharacter(int coorX, int coorY, bool isPlayer)
         {
             //Characters are placed on the screen
             if (isPlayer)
             {
-                screen[coorY, 3] = '█';
-                screen[coorY + 1, 3] = '█';
-                screen[coorY + 2, 3] = '█';
-                screen[coorY + 3, 3] = '█';
-                screen[coorY + 4, 3] = '█';
-                screen[coorY + 5, 3] = '█';
+                screen[coorY, coorX] = '█';
+                screen[coorY + 1, coorX] = '█';
+                screen[coorY + 2, coorX] = '█';
+                screen[coorY + 3, coorX] = '█';
+                screen[coorY + 4, coorX] = '█';
+                screen[coorY + 5, coorX] = '█';
             }
             else
             {
-                screen[coorY, screen.GetLength(1) - 4] = '█';
-                screen[coorY + 1, screen.GetLength(1) - 4] = '█';
-                screen[coorY + 2, screen.GetLength(1) - 4] = '█';
-                screen[coorY + 3, screen.GetLength(1) - 4] = '█';
-                screen[coorY + 4, screen.GetLength(1) - 4] = '█';
-                screen[coorY + 5, screen.GetLength(1) - 4] = '█';
+                screen[coorY, coorX] = '█';
+                screen[coorY + 1, coorX] = '█';
+                screen[coorY + 2, coorX] = '█';
+                screen[coorY + 3, coorX] = '█';
+                screen[coorY + 4, coorX] = '█';
+                screen[coorY + 5, coorX] = '█';
             }
         }
 

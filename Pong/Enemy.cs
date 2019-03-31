@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Player
+    class Enemy
     {
         public int CoordinateY { get; set; }
         public int CoordinateX { get; set; }
         public int Speed { get; set; }
-        
 
-        public Player(int _speed)
+
+        public Enemy(int _speed)
         {
             Speed = _speed;
             CoordinateY = 9;
-            CoordinateX = 3;
+            CoordinateX = 96;
         }
 
         private void MoveUp()
@@ -25,7 +25,7 @@ namespace Pong
             if (CoordinateY > 1)
             {
                 CoordinateY -= Speed;
-            }        
+            }
         }
 
         private void MoveDown()
@@ -35,30 +35,5 @@ namespace Pong
                 CoordinateY += Speed;
             }
         }
-
-        public void Controller()
-        {
-            // gets input here
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-                if (keyInfo.Key == ConsoleKey.W)
-                {
-                    MoveUp();
-                }
-                else if (keyInfo.Key == ConsoleKey.S)
-                {
-                        MoveDown();
-                }
-
-            }
-
-        }
-
-
     }
-
-
 }
-
