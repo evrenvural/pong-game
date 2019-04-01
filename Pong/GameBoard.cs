@@ -18,7 +18,6 @@ namespace Pong
         public void DrawScreen()
         {
             CursorSettings();
-            DrawBorders();
             for (int i = 0; i < screen.GetLength(0); i++)
             {
                 for (int j = 0; j < screen.GetLength(1); j++)
@@ -46,54 +45,16 @@ namespace Pong
             Console.CursorVisible = false;
         }
 
-        private void DrawBorders()
+        public void Draw(GameObject gameObject)
         {
-            //Left and right borders
-            for (int i = 0; i < screen.GetLength(0); i++)
+            for (int i = 0; i < gameObject.Height; i++)
             {
-                //Draw left borders
-                screen[i, 0] = '█';
-                // Draw right borders
-                screen[i,screen.GetLength(1)-1] = '█';
-            }
-
-            //Top and bottom borders
-            for (int i = 0; i < screen.GetLength(1); i++)
-            {
-                //Draw top borders
-                screen[0,i] = '█';
-                //Draw bottom borders
-                screen[screen.GetLength(0) - 1, i] = '█';
+                for (int j = 0; j < gameObject.Width; j++)
+                {
+                    screen[gameObject.Y + i, gameObject.X + j] = '█';
+                }
             }
         }
         
-        public void DrawCharacter(int coorX, int coorY, bool isPlayer)
-        {
-            //Characters are placed on the screen
-            if (isPlayer)
-            {
-                screen[coorY, coorX] = '█';
-                screen[coorY + 1, coorX] = '█';
-                screen[coorY + 2, coorX] = '█';
-                screen[coorY + 3, coorX] = '█';
-                screen[coorY + 4, coorX] = '█';
-                screen[coorY + 5, coorX] = '█';
-            }
-            else
-            {
-                screen[coorY, coorX] = '█';
-                screen[coorY + 1, coorX] = '█';
-                screen[coorY + 2, coorX] = '█';
-                screen[coorY + 3, coorX] = '█';
-                screen[coorY + 4, coorX] = '█';
-                screen[coorY + 5, coorX] = '█';
-            }
-        }
-
-        public void DrawBall(int coorY, int coorX)
-        {
-            //Ball is placed on the screen
-            screen[coorY,coorX] = '█';
-        }
     }
 }

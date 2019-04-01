@@ -6,50 +6,48 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Ball
+    class Ball : GameObject
     {
-        public int CoordinateX { get; set; }
-        public int CoordinateY { get; set; }
         public int Speed { get; set; }
+        public Collider Collider { get; set; }
 
-        public Ball(int _speed)
+        public Ball(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
         {
-            CoordinateX = 50;
-            CoordinateY = 12;
             Speed = _speed;
+            Collider = new Collider(Width, Height);
         }
-
+        
         public void Move(int rotation)
         {
             switch (rotation)
             {
                 case 0:
                     // Right Up
-                    CoordinateX += Speed;
-                    CoordinateY -= Speed;
+                    X += Speed;
+                    Y -= Speed;
                     break;
                 case 1:
                     // Right
-                    CoordinateX += Speed;
+                    X += Speed;
                     break;
                 case 2:
                     // Right Down
-                    CoordinateX += Speed;
-                    CoordinateY += Speed;
+                    X += Speed;
+                    Y += Speed;
                     break;
                 case 3:
                     // Left Down
-                    CoordinateX -= Speed;
-                    CoordinateY += Speed;
+                    X -= Speed;
+                    Y += Speed;
                     break;
                 case 4:
                     //Left
-                    CoordinateX -= Speed;
+                    X -= Speed;
                     break;
                 case 5:
                     // Left Up
-                    CoordinateX -= Speed;
-                    CoordinateY -= Speed;
+                    X -= Speed;
+                    Y -= Speed;
                     break;
             }
         }

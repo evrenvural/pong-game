@@ -6,33 +6,26 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Player
+    class Player : Character
     {
-        public int CoordinateY { get; set; }
-        public int CoordinateX { get; set; }
-        public int Speed { get; set; }
-        
-
-        public Player(int _speed)
+        public Player(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width, _speed)
         {
-            Speed = _speed;
-            CoordinateY = 9;
-            CoordinateX = 3;
+
         }
 
         private void MoveUp()
         {
-            if (CoordinateY > 1)
+            if (Y > 1)
             {
-                CoordinateY -= Speed;
+                Y -= Speed;
             }        
         }
 
         private void MoveDown()
         {
-            if (CoordinateY < 18)
+            if (Y < 18)
             {
-                CoordinateY += Speed;
+                Y += Speed;
             }
         }
 
@@ -49,7 +42,7 @@ namespace Pong
                 }
                 else if (keyInfo.Key == ConsoleKey.S)
                 {
-                        MoveDown();
+                    MoveDown();
                 }
 
             }
