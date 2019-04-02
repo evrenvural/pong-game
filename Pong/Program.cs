@@ -26,9 +26,11 @@ namespace Pong
                 gameBoard.ClearScreen();
                 //Write your codes this area {
                 Draws();
+                ball.Move(4);
+                player.Controller();
+                CollisionControls();
                 // }
-                gameBoard.DrawScreen();
-                
+                gameBoard.DrawScreen();   
             }
         }
 
@@ -54,6 +56,16 @@ namespace Pong
             gameBoard.Draw(borderRight);
             gameBoard.Draw(borderBot);
             gameBoard.Draw(borderLeft);
+        }
+
+        static void CollisionControls()
+        {
+            Console.WriteLine(Collision.Controls(player, ball));
+            Console.WriteLine(Collision.Controls(enemy, ball));
+            Console.WriteLine(Collision.Controls(borderTop, ball));
+            Console.WriteLine(Collision.Controls(borderRight, ball));
+            Console.WriteLine(Collision.Controls(borderBot, ball));
+            Console.WriteLine(Collision.Controls(borderLeft, ball));
         }
     }
 }

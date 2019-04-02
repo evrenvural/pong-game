@@ -18,6 +18,8 @@ namespace Pong
             if (Y > 1)
             {
                 Y -= Speed;
+                // New coordinate infos give collider
+                Collider.Y = Y;
             }
         }
 
@@ -26,6 +28,8 @@ namespace Pong
             if (Y < 18)
             {
                 Y += Speed;
+                // New coordinate infos give collider
+                Collider.Y = Y;
             }
         }
     }

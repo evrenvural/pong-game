@@ -14,7 +14,7 @@ namespace Pong
         public Ball(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
         {
             Speed = _speed;
-            Collider = new Collider(Width, Height);
+            Collider = new Collider(X, Y, Width, Height);
         }
         
         public void Move(int rotation)
@@ -50,6 +50,10 @@ namespace Pong
                     Y -= Speed;
                     break;
             }
+
+            //the new coordinate infos give collider
+            Collider.X = X;
+            Collider.Y = Y;
         }
     }
 }

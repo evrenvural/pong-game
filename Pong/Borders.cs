@@ -11,7 +11,7 @@ namespace Pong
         public Collider Collider { get; set; }
         public Borders(int _x, int _y, int _height, int _width) : base(_x, _y, _height, _width)
         {
-            Collider = new Collider(Width, Height);
+            Collider = new Collider(X, Y, Width, Height);
         }
     }
 }

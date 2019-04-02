@@ -8,35 +8,45 @@ namespace Pong
 {
     class Collider
     {
-        public int width { get; set; }
-        public int height { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
-        public Collider(int _width, int _height)
+        public Collider(int _x, int _y, int _width, int _height)
         {
-            width = _width;
-            height = _height;
+            X = _x;
+            Y = _y;
+            Width = _width;
+            Height = _height;
         }
 
-        public int[] ShapeOfColliderX(int coorX)
+        public void SetColliderXY(int _x, int _y)
+        {
+            X = _x;
+            Y = _y;
+        }
+
+        public int[] GetShapeOfColliderX()
         {
             // draws a virtual horizontal line
-            int[] temp = new int[width];
+            int[] temp = new int[Width];
 
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < Width; i++)
             {
-                temp[i] = coorX + i;
+                temp[i] = X + i;
             }
             return temp;
         }
 
-        public int[] ShapeOfColliderY(int coorY)
+        public int[] GetShapeOfColliderY()
         {
             // draws a virtual vertical line
-            int[] temp = new int[height];
+            int[] temp = new int[Height];
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Height; i++)
             {
-                temp[i] = coorY + i;
+                temp[i] = Y + i;
             }
             return temp;
         }
