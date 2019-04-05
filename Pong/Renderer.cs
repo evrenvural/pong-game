@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class GameBoard
+    class Renderer
     {
         private char[,] screen;
         
-        public GameBoard(int width, int height)
+        public Renderer(int width, int height)
         {
             screen = new char[height, width];
         }

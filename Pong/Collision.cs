@@ -8,25 +8,25 @@ namespace Pong
 {
     class Collision
     {
-        public static bool Controls(Character character, Ball ball)
+        public static bool Controls(Player player, Ball ball)
         {
             bool temp = false;
-
-            int[] characterX = character.Collider.GetShapeOfColliderX();
-            int[] characterY = character.Collider.GetShapeOfColliderY();
+            
+            int[] playerX = player.Collider.GetShapeOfColliderX();
+            int[] playerY = player.Collider.GetShapeOfColliderY();
             int[] ballX = ball.Collider.GetShapeOfColliderX();
             int[] ballY = ball.Collider.GetShapeOfColliderY();
 
 
-            for (int i = 0; i < characterY.Length; i++)
+            for (int i = 0; i < playerY.Length; i++)
             {
-                for (int j = 0; j < characterX.Length; j++)
+                for (int j = 0; j < playerX.Length; j++)
                 {
                     for (int k = 0; k < ballY.Length; k++)
                     {
                         for (int l = 0; l < ballX.Length; l++)
                         {
-                            if (characterX[j] + 1 == ballX[l] && characterY[i] == ballY[k])
+                            if (playerX[j] + (ball.Speed+1) > ballX[l] && playerY[i] == ballY[k])
                             {
                                 temp = true;
                             }
@@ -38,31 +38,119 @@ namespace Pong
             return temp;
         }
 
-        public static bool Controls(Borders borders, Ball ball)
+        public static bool Controls(Enemy enemy, Ball ball)
         {
             bool temp = false;
 
-            int[] bordersX = borders.Collider.GetShapeOfColliderX();
-            int[] bordersY = borders.Collider.GetShapeOfColliderY();
+            int[] enemyX = enemy.Collider.GetShapeOfColliderX();
+            int[] enemyY = enemy.Collider.GetShapeOfColliderY();
             int[] ballX = ball.Collider.GetShapeOfColliderX();
             int[] ballY = ball.Collider.GetShapeOfColliderY();
 
 
-            for (int i = 0; i < bordersY.Length; i++)
+            for (int i = 0; i < enemyY.Length; i++)
             {
-                for (int j = 0; j < bordersX.Length; j++)
+                for (int j = 0; j < enemyX.Length; j++)
                 {
                     for (int k = 0; k < ballY.Length; k++)
                     {
                         for (int l = 0; l < ballX.Length; l++)
                         {
-                            if (bordersX[j] + 1 == ballX[l] && bordersY[i] == ballY[k])
+                            if (enemyX[j] < ball.Speed + ballX[l] && enemyY[i] == ballY[k])
                             {
                                 temp = true;
                             }
                         }
                     }
                 }
+            }
+
+            return temp;
+        }
+
+        public static bool Controls(Borders border, Ball ball)
+        {
+            bool temp = false;
+
+            int[] borderX = border.Collider.GetShapeOfColliderX();
+            int[] borderY = border.Collider.GetShapeOfColliderY();
+            int[] ballX = ball.Collider.GetShapeOfColliderX();
+            int[] ballY = ball.Collider.GetShapeOfColliderY();
+
+            switch (border.Tag)
+            {
+                case "top":
+                    for (int i = 0; i < borderY.Length; i++)
+                    {
+                        for (int j = 0; j < borderX.Length; j++)
+                        {
+                            for (int k = 0; k < ballY.Length; k++)
+                            {
+                                for (int l = 0; l < ballX.Length; l++)
+                                {
+                                    if (borderX[j] == ballX[l] && borderY[i] > ballY[k] - (ball.Speed+1))
+                                    {
+                                        temp = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "right":
+                    for (int i = 0; i < borderY.Length; i++)
+                    {
+                        for (int j = 0; j < borderX.Length; j++)
+                        {
+                            for (int k = 0; k < ballY.Length; k++)
+                            {
+                                for (int l = 0; l < ballX.Length; l++)
+                                {
+                                    if (borderX[j] < ball.Speed + ballX[l] && borderY[i] == ballY[k])
+                                    {
+                                        temp = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "bot":
+                    for (int i = 0; i < borderY.Length; i++)
+                    {
+                        for (int j = 0; j < borderX.Length; j++)
+                        {
+                            for (int k = 0; k < ballY.Length; k++)
+                            {
+                                for (int l = 0; l < ballX.Length; l++)
+                                {
+                                    if (borderX[j] == ballX[l] && borderY[i] < ballY[k] + (ball.Speed - 1))
+                                    {
+                                        temp = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "left":
+                    for (int i = 0; i < borderY.Length; i++)
+                    {
+                        for (int j = 0; j < borderX.Length; j++)
+                        {
+                            for (int k = 0; k < ballY.Length; k++)
+                            {
+                                for (int l = 0; l < ballX.Length; l++)
+                                {
+                                    if (borderX[j] + (ball.Speed + 1) > ballX[l] && borderY[i] == ballY[k])
+                                    {
+                                        temp = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
 
             return temp;

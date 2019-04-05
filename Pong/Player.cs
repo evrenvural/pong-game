@@ -6,31 +6,57 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Player : Character
+    class Player : Character, IPhysics
     {
-        public Player(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width, _speed)
+        private Rotations _rotation;
+        public Player(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
         {
-
+            Speed = _speed;
         }
 
-        private void MoveUp()
-        {
-            if (Y > 1)
-            {
-                Y -= Speed;
-                // New coordinate info gives collider
-                Collider.Y = Y;
-            }        
-        }
 
-        private void MoveDown()
+        public int Speed { get; set; }
+
+        public Rotations Rotation
         {
-            if (Y < 18)
+            get { return _rotation; }
+            set
             {
-                Y += Speed;
-                // New coordinate info gives collider
-                Collider.Y = Y;
+                if (value != Rotations.TOP && value != Rotations.DOWN)
+                {
+                    _rotation = Rotations.TOP;
+                }
+                else
+                {
+                    _rotation = value;
+                }
             }
+        }
+
+        public void Move()
+        {
+            // Move Up
+            if (Rotation == Rotations.TOP)
+            {
+                if (Y > 1)
+                {
+                    Y -= Speed;
+                    // New coordinate infos give collider
+                    Collider.Y = Y;
+                }
+            }
+
+            // Move Down
+            else if (Rotation == Rotations.DOWN)
+            {
+                if (Y < 18)
+                {
+                    Y += Speed;
+                    // New coordinate infos give collider
+                    Collider.Y = Y;
+                }
+            }
+
         }
 
         public void Controller()
@@ -40,22 +66,21 @@ namespace Pong
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
 
+                // moves up
                 if (keyInfo.Key == ConsoleKey.W)
                 {
-                    MoveUp();
+                    Rotation = Rotations.TOP;
+                    Move();
                 }
+                // moves down
                 else if (keyInfo.Key == ConsoleKey.S)
                 {
-                    MoveDown();
+                    Rotation = Rotations.DOWN;
+                    Move();
                 }
 
             }
-
         }
-
-
+        
     }
-
-
 }
-

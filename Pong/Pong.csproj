@@ -49,11 +49,13 @@
     <Compile Include="Collider.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Enemy.cs" />
-    <Compile Include="GameBoard.cs" />
+    <Compile Include="Renderer.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="IPhysics.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomNumberForRotation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
