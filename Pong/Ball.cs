@@ -8,26 +8,29 @@ namespace Pong
 {
     class Ball : GameObject, IPhysics
     {
-        private Rotations _rotation;
+        private Rotations _moveRotation;
         public int Speed { get; set; }
         public Collider Collider { get; set; }
-        public Rotations Rotation
+        public Rotations MoveRotation
         {
-            get { return _rotation; }
+            get { return _moveRotation; }
             set
             {
-                _rotation = (Rotations) (Convert.ToInt16(value) % 6);
+                _moveRotation = (Rotations) (Convert.ToInt16(value) % 8);
             }
         }
-        public Ball(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
+        public Dynamic Dynamic { get; set; }
+
+        public Ball(int _x, int _y, int _height, int _width, int _speed, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Speed = _speed;
             Collider = new Collider(X, Y, Width, Height);
+            Dynamic = new Dynamic();
         }
 
         public void Move()
         {
-            switch (Rotation)
+            switch (MoveRotation)
             {
                 case Rotations.RIGHT_UP:
                     // Right Up
@@ -58,7 +61,8 @@ namespace Pong
                     Y -= Speed;
                     break;
                 default:
-                    Rotation = (Rotations)RandomNumberForRotation.Rndm();
+                    //MoveRotation = (Rotations)RandomNumberForRotation.Rndm();
+                    MoveRotation = Rotations.LEFT_DOWN;
                     break;
 
             }

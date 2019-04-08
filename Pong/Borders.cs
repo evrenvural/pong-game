@@ -10,7 +10,7 @@ namespace Pong
     {
         public Collider Collider { get; set; }
         public string Tag { get; set; }
-        public Borders(int _x, int _y, int _height, int _width, string _tag) : base(_x, _y, _height, _width)
+        public Borders(int _x, int _y, int _height, int _width, Rotations _rotation, string _tag) : base(_x, _y, _height, _width, _rotation)
         {
             Collider = new Collider(X, Y, Width, Height);
             Tag = _tag;

@@ -9,7 +9,7 @@ namespace Pong
     class Character : GameObject
     {
         public Collider Collider { get; set; }
-        public Character(int _x, int _y, int _height, int _width) : base(_x, _y, _height, _width)
+        public Character(int _x, int _y, int _height, int _width, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Collider = new Collider(X, Y, Width, Height);
         }

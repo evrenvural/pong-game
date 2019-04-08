@@ -8,24 +8,24 @@ namespace Pong
 {
     class Enemy : Character, IPhysics
     {
-        private Rotations _rotation;
-        public Rotations Rotation
+        private Rotations _moveRotation;
+        public Rotations MoveRotation
         {
-            get { return _rotation; }
+            get { return _moveRotation; }
             set
             {
                 if (value != Rotations.TOP && value != Rotations.DOWN)
                 {
-                    _rotation = Rotations.TOP;
+                    _moveRotation = Rotations.TOP;
                 }
                 else
                 {
-                    _rotation = value;
+                    _moveRotation = value;
                 }
             }
         }
         public int Speed { get; set; }
-        public Enemy(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
+        public Enemy(int _x, int _y, int _height, int _width, int _speed, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Speed = _speed;
         }
@@ -33,7 +33,7 @@ namespace Pong
         public void Move()
         {
             // Move Up
-            if (Rotation == Rotations.TOP)
+            if (MoveRotation == Rotations.TOP)
             {
                 if (Y > 1)
                 {
@@ -44,7 +44,7 @@ namespace Pong
             }
 
             // Move Down
-            else if (Rotation == Rotations.DOWN)
+            else if (MoveRotation == Rotations.DOWN)
             {
                 if (Y < 18)
                 {
@@ -52,6 +52,30 @@ namespace Pong
                     // New coordinate infos give collider
                     Collider.Y = Y;
                 }
+            }
+        }
+            
+            // FOR NOW
+        public void Controller()
+        {
+            // gets input here
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+                // moves up
+                if (keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    MoveRotation = Rotations.TOP;
+                    Move();
+                }
+                // moves down
+                else if (keyInfo.Key == ConsoleKey.DownArrow)
+                {
+                    MoveRotation = Rotations.DOWN;
+                    Move();
+                }
+
             }
         }
     }

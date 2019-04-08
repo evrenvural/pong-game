@@ -8,8 +8,8 @@ namespace Pong
 {
     class Player : Character, IPhysics
     {
-        private Rotations _rotation;
-        public Player(int _x, int _y, int _height, int _width, int _speed) : base(_x, _y, _height, _width)
+        private Rotations _moveRotation;
+        public Player(int _x, int _y, int _height, int _width, int _speed, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Speed = _speed;
         }
@@ -17,18 +17,18 @@ namespace Pong
 
         public int Speed { get; set; }
 
-        public Rotations Rotation
+        public Rotations MoveRotation
         {
-            get { return _rotation; }
+            get { return _moveRotation; }
             set
             {
                 if (value != Rotations.TOP && value != Rotations.DOWN)
                 {
-                    _rotation = Rotations.TOP;
+                    _moveRotation = Rotations.TOP;
                 }
                 else
                 {
-                    _rotation = value;
+                    _moveRotation = value;
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace Pong
         public void Move()
         {
             // Move Up
-            if (Rotation == Rotations.TOP)
+            if (MoveRotation == Rotations.TOP)
             {
                 if (Y > 1)
                 {
@@ -47,7 +47,7 @@ namespace Pong
             }
 
             // Move Down
-            else if (Rotation == Rotations.DOWN)
+            else if (MoveRotation == Rotations.DOWN)
             {
                 if (Y < 18)
                 {
@@ -69,13 +69,13 @@ namespace Pong
                 // moves up
                 if (keyInfo.Key == ConsoleKey.W)
                 {
-                    Rotation = Rotations.TOP;
+                    MoveRotation = Rotations.TOP;
                     Move();
                 }
                 // moves down
                 else if (keyInfo.Key == ConsoleKey.S)
                 {
-                    Rotation = Rotations.DOWN;
+                    MoveRotation = Rotations.DOWN;
                     Move();
                 }
 

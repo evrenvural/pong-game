@@ -26,7 +26,7 @@ namespace Pong
                     {
                         for (int l = 0; l < ballX.Length; l++)
                         {
-                            if (playerX[j] + (ball.Speed+1) > ballX[l] && playerY[i] == ballY[k])
+                            if (playerX[j] + 2 > ballX[l] && playerY[i] == ballY[k])
                             {
                                 temp = true;
                             }
@@ -56,7 +56,7 @@ namespace Pong
                     {
                         for (int l = 0; l < ballX.Length; l++)
                         {
-                            if (enemyX[j] < ball.Speed + ballX[l] && enemyY[i] == ballY[k])
+                            if (enemyX[j] - 2 < ballX[l] && enemyY[i] == ballY[k])
                             {
                                 temp = true;
                             }
@@ -77,81 +77,46 @@ namespace Pong
             int[] ballX = ball.Collider.GetShapeOfColliderX();
             int[] ballY = ball.Collider.GetShapeOfColliderY();
 
-            switch (border.Tag)
+            for (int i = 0; i < borderY.Length; i++)
             {
-                case "top":
-                    for (int i = 0; i < borderY.Length; i++)
+                for (int j = 0; j < borderX.Length; j++)
+                {
+                    for (int k = 0; k < ballY.Length; k++)
                     {
-                        for (int j = 0; j < borderX.Length; j++)
+                        for (int l = 0; l < ballX.Length; l++)
                         {
-                            for (int k = 0; k < ballY.Length; k++)
+                            switch (border.Tag)
                             {
-                                for (int l = 0; l < ballX.Length; l++)
-                                {
-                                    if (borderX[j] == ballX[l] && borderY[i] > ballY[k] - (ball.Speed+1))
+                                case "top":
+                                    if (borderX[j] == ballX[l] && ballY[k] < borderY[i] + 2)
                                     {
                                         temp = true;
                                     }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case "right":
-                    for (int i = 0; i < borderY.Length; i++)
-                    {
-                        for (int j = 0; j < borderX.Length; j++)
-                        {
-                            for (int k = 0; k < ballY.Length; k++)
-                            {
-                                for (int l = 0; l < ballX.Length; l++)
-                                {
-                                    if (borderX[j] < ball.Speed + ballX[l] && borderY[i] == ballY[k])
+                                    break;
+                                case "right":
+                                    if (borderX[j] - 2 < ballX[l] && ballY[k] == borderY[i])
                                     {
                                         temp = true;
                                     }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case "bot":
-                    for (int i = 0; i < borderY.Length; i++)
-                    {
-                        for (int j = 0; j < borderX.Length; j++)
-                        {
-                            for (int k = 0; k < ballY.Length; k++)
-                            {
-                                for (int l = 0; l < ballX.Length; l++)
-                                {
-                                    if (borderX[j] == ballX[l] && borderY[i] < ballY[k] + (ball.Speed - 1))
+                                    break;
+                                case "bot":
+                                    if (borderX[j] == ballX[l] && ballY[k] > borderY[i] - 2)
                                     {
                                         temp = true;
                                     }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case "left":
-                    for (int i = 0; i < borderY.Length; i++)
-                    {
-                        for (int j = 0; j < borderX.Length; j++)
-                        {
-                            for (int k = 0; k < ballY.Length; k++)
-                            {
-                                for (int l = 0; l < ballX.Length; l++)
-                                {
-                                    if (borderX[j] + (ball.Speed + 1) > ballX[l] && borderY[i] == ballY[k])
+                                    break;
+                                case "left":
+                                    if (borderX[j] +2 > ballX[l] && ballY[k] == borderY[i])
                                     {
                                         temp = true;
                                     }
-                                }
+                                    break;
                             }
                         }
                     }
-                    break;
-            }
+                }
+            }       
+            
 
             return temp;
         }

@@ -10,7 +10,7 @@ namespace Pong
     interface IPhysics
     {
         int Speed { get; set; }
-        Rotations Rotation { get; set; }
+        Rotations MoveRotation { get; set; }
         void Move();
     }
 }

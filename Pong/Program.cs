@@ -25,10 +25,13 @@ namespace Pong
             {
                 renderer.ClearScreen();
                 //Write your codes this area {
+
                 Draws();
-                //ball.Move();
+                ball.Move();
+                //enemy.Controller();
                 player.Controller();
                 CollisionControls();
+                
                 // }
                 renderer.DrawScreen();   
             }
@@ -38,16 +41,14 @@ namespace Pong
         {
             game = true;
             renderer = new Renderer(WIDTH, HEIGHT);
-            borderTop = new Borders(0, 0, 1, WIDTH, "top");
-            borderRight = new Borders(WIDTH - 1, 0, HEIGHT, 1, "right");
-            borderBot = new Borders(0, HEIGHT - 1, 1, WIDTH, "bot");
-            borderLeft = new Borders(0, 0, HEIGHT, 1, "left");
-            player = new Player(3, HEIGHT / 2-3, 6, 1, 1);
-            enemy = new Enemy(WIDTH - 4, HEIGHT / 2-3, 6, 1, 1);
+            borderTop = new Borders(0, 0, 1, WIDTH, Rotations.RIGHT, "top");
+            borderRight = new Borders(WIDTH - 1, 0, HEIGHT, 1, Rotations.TOP, "right");
+            borderBot = new Borders(0, HEIGHT - 1, 1, WIDTH, Rotations.RIGHT, "bot");
+            borderLeft = new Borders(0, 0, HEIGHT, 1, Rotations.TOP, "left");
+            player = new Player(3, HEIGHT / 2-3, 6, 1, 1, Rotations.TOP);
+            enemy = new Enemy(WIDTH - 4, HEIGHT / 2-3, 6, 1, 1, Rotations.TOP);
             Random rndm = new Random();
-            
-            ball = new Ball(WIDTH / 2, HEIGHT / 2, 1, 1, 2);
-            //ball.InitializeMove();
+            ball = new Ball(WIDTH / 2, HEIGHT / 2, 1, 1, 1, Rotations.TOP);
         }
 
         static void Draws()
@@ -66,40 +67,39 @@ namespace Pong
             // Collision status of ball with player
             if (Collision.Controls(player, ball))
             {
-                ball.Rotation += 3;
+                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, player.Rotation);
             }
             // Collision status of ball with enemy
             if (Collision.Controls(enemy, ball))
             {
-                ball.Rotation += 3;
+                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, enemy.Rotation);
             }
             // Collision status of ball with top border
             if (Collision.Controls(borderTop, ball))
             {
-                ball.Rotation += 3;                     
+                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, borderTop.Rotation);
             }
             // Collision status of ball with right border
             if (Collision.Controls(borderRight, ball))
             {
-                ball.Rotation += 3;
+                // GOAL
             }
             // Collision status of ball with bot border
             if (Collision.Controls(borderBot, ball))
             {
-                ball.Rotation += 3;
+                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, borderBot.Rotation);
+                
             }
             // Collision status of ball with left border
             if (Collision.Controls(borderLeft, ball))
             {
-                ball.Rotation += 3;
-            }
-            
+                // GOAL
+            }   
         }
+
+        // Kullanıcı hızına göre açı değişecek top dinamiğinde
     }
 }
-// Kaldığım Yer:
-// 1) Move methodunu (interfaceden gelen) private yap.
-// 2) Yansıma sınıfı oluştur topun geliş açısına göre yansıt Characters hızlarına göre açıyı değiştir. Hangi sınıfa girer düşün.
-// 3) Önce top speedine de bakabilirsin garip hareketler oluyo çarpışmalarda
 
-    //Kendine ait sayfa, memlekete ait sayfa, memlekette kocaelisporu tanıt, iletişim bilgileri olcak form elemanlarını kullan hepsini burda ve post et o sayfada göster php bu form elemanlarını js ile kontrol et ona göre sınırla isim girdiyse sayı olmasın
+
+    
