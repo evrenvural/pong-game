@@ -61,8 +61,7 @@ namespace Pong
                     Y -= Speed;
                     break;
                 default:
-                    //MoveRotation = (Rotations)RandomNumberForRotation.Rndm();
-                    MoveRotation = Rotations.LEFT_DOWN;
+                    MoveRotation = (Rotations)RandomNumberForRotation.Rndm();
                     break;
 
             }

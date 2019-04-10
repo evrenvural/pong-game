@@ -8,22 +8,7 @@ namespace Pong
 {
     class Enemy : Character, IPhysics
     {
-        private Rotations _moveRotation;
-        public Rotations MoveRotation
-        {
-            get { return _moveRotation; }
-            set
-            {
-                if (value != Rotations.TOP && value != Rotations.DOWN)
-                {
-                    _moveRotation = Rotations.TOP;
-                }
-                else
-                {
-                    _moveRotation = value;
-                }
-            }
-        }
+       
         public int Speed { get; set; }
         public Enemy(int _x, int _y, int _height, int _width, int _speed, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
@@ -32,12 +17,14 @@ namespace Pong
 
         public void Move()
         {
+            IsMove = false;
             // Move Up
             if (MoveRotation == Rotations.TOP)
             {
                 if (Y > 1)
                 {
                     Y -= Speed;
+                    IsMove = true;
                     // New coordinate infos give collider
                     Collider.Y = Y;
                 }
@@ -49,6 +36,7 @@ namespace Pong
                 if (Y < 18)
                 {
                     Y += Speed;
+                    IsMove = true;
                     // New coordinate infos give collider
                     Collider.Y = Y;
                 }

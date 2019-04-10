@@ -45,9 +45,8 @@ namespace Pong
             borderRight = new Borders(WIDTH - 1, 0, HEIGHT, 1, Rotations.TOP, "right");
             borderBot = new Borders(0, HEIGHT - 1, 1, WIDTH, Rotations.RIGHT, "bot");
             borderLeft = new Borders(0, 0, HEIGHT, 1, Rotations.TOP, "left");
-            player = new Player(3, HEIGHT / 2-3, 6, 1, 1, Rotations.TOP);
-            enemy = new Enemy(WIDTH - 4, HEIGHT / 2-3, 6, 1, 1, Rotations.TOP);
-            Random rndm = new Random();
+            player = new Player(3, HEIGHT / 2 - 3, 6, 1, 1, Rotations.TOP);
+            enemy = new Enemy(WIDTH - 4, HEIGHT / 2 - 3, 6, 1, 1, Rotations.TOP);
             ball = new Ball(WIDTH / 2, HEIGHT / 2, 1, 1, 1, Rotations.TOP);
         }
 
@@ -67,17 +66,17 @@ namespace Pong
             // Collision status of ball with player
             if (Collision.Controls(player, ball))
             {
-                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, player.Rotation);
+                ball.MoveRotation = ball.Dynamic.Reflection(ball, player);
             }
             // Collision status of ball with enemy
             if (Collision.Controls(enemy, ball))
             {
-                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, enemy.Rotation);
+                ball.MoveRotation = ball.Dynamic.Reflection(ball, enemy);
             }
             // Collision status of ball with top border
             if (Collision.Controls(borderTop, ball))
             {
-                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, borderTop.Rotation);
+                ball.MoveRotation = ball.Dynamic.Reflection(ball, borderTop);
             }
             // Collision status of ball with right border
             if (Collision.Controls(borderRight, ball))
@@ -87,7 +86,7 @@ namespace Pong
             // Collision status of ball with bot border
             if (Collision.Controls(borderBot, ball))
             {
-                ball.MoveRotation = ball.Dynamic.Reflection(ball.MoveRotation, borderBot.Rotation);
+                ball.MoveRotation = ball.Dynamic.Reflection(ball, borderBot);
                 
             }
             // Collision status of ball with left border
@@ -97,7 +96,6 @@ namespace Pong
             }   
         }
 
-        // Kullanıcı hızına göre açı değişecek top dinamiğinde
     }
 }
 
