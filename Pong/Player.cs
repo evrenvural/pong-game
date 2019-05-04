@@ -18,7 +18,7 @@ namespace Pong
 
         public void Move()
         {
-            IsMove = false;
+            
 
             // Move Up
             if (MoveRotation == Rotations.TOP)
@@ -26,7 +26,6 @@ namespace Pong
                 if (Y > 1)
                 {
                     Y -= Speed;
-                    IsMove = true;
 
                     // New coordinate infos give collider
                     Collider.Y = Y;
@@ -36,10 +35,9 @@ namespace Pong
             // Move Down
             else if (MoveRotation == Rotations.DOWN)
             {
-                if (Y < 18)
+                if (Y <= 18)
                 {
                     Y += Speed;
-                    IsMove = true;
 
                     // New coordinate infos give collider
                     Collider.Y = Y;

@@ -50,6 +50,7 @@
     <Compile Include="Collider.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="IAI.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="IPhysics.cs" />

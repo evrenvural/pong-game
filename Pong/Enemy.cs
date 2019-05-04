@@ -6,25 +6,28 @@ using System.Threading.Tasks;
 
 namespace Pong
 {
-    class Enemy : Character, IPhysics
+    class Enemy : Character, IPhysics, IAI
     {
-       
+
+        private int guessBallX;
+
         public int Speed { get; set; }
         public Enemy(int _x, int _y, int _height, int _width, int _speed, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Speed = _speed;
+            guessBallX = 50;
         }
 
         public void Move()
         {
-            IsMove = false;
+            
             // Move Up
             if (MoveRotation == Rotations.TOP)
             {
                 if (Y > 1)
                 {
                     Y -= Speed;
-                    IsMove = true;
+
                     // New coordinate infos give collider
                     Collider.Y = Y;
                 }
@@ -33,37 +36,37 @@ namespace Pong
             // Move Down
             else if (MoveRotation == Rotations.DOWN)
             {
-                if (Y < 18)
+                if (Y <= 18)
                 {
                     Y += Speed;
-                    IsMove = true;
+
                     // New coordinate infos give collider
                     Collider.Y = Y;
                 }
             }
         }
-            
-            // FOR NOW
-        public void Controller()
-        {
-            // gets input here
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-                // moves up
-                if (keyInfo.Key == ConsoleKey.UpArrow)
-                {
-                    MoveRotation = Rotations.TOP;
-                    Move();
-                }
-                // moves down
-                else if (keyInfo.Key == ConsoleKey.DownArrow)
+        public void Think(int coordinateY, int coordinateX)
+        {
+            Random rndm = new Random();
+            
+            if (guessBallX <= coordinateX)
+            {
+                if (coordinateY > Y)
                 {
                     MoveRotation = Rotations.DOWN;
                     Move();
                 }
-
+                else if (coordinateY < Y)
+                {
+                    MoveRotation = Rotations.TOP;
+                    Move();
+                }
+            }
+            else
+            {
+                guessBallX = rndm.Next(80, 100);
+                Console.WriteLine(guessBallX);
             }
         }
     }

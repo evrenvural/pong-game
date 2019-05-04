@@ -9,6 +9,7 @@ namespace Pong
     class Program
     {
         static bool game;
+        static bool win;
         const int HEIGHT = 26;
         const int WIDTH = 100;
         static Renderer renderer;
@@ -28,13 +29,24 @@ namespace Pong
 
                 Draws();
                 ball.Move();
-                //enemy.Controller();
+                enemy.Think(ball.Y, ball.X);
                 player.Controller();
                 CollisionControls();
                 
                 // }
                 renderer.DrawScreen();   
             }
+
+            Console.Clear();
+            if (win)
+            {
+                Console.WriteLine("YOU WIN!");
+            }
+            else
+            {
+                Console.WriteLine("YOU LOSE!");
+            }
+            Console.ReadLine();
         }
 
         static void InitialVariables()
@@ -81,7 +93,8 @@ namespace Pong
             // Collision status of ball with right border
             if (Collision.Controls(borderRight, ball))
             {
-                // GOAL
+                win = true;
+                game = false;
             }
             // Collision status of ball with bot border
             if (Collision.Controls(borderBot, ball))
@@ -92,10 +105,11 @@ namespace Pong
             // Collision status of ball with left border
             if (Collision.Controls(borderLeft, ball))
             {
-                // GOAL
+                win = false;
+                game = false;
             }   
         }
-
+ 
     }
 }
 
