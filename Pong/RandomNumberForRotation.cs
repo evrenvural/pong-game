@@ -17,7 +17,7 @@ namespace Pong
             {
                 number = rndm.Next(0, 8);
 
-            } while (number == 0 || number == 4);
+            } while (number == 0 || number == 4 || number == 2 || number == 6);
 
             return number;
         }

@@ -26,10 +26,6 @@ namespace Pong
             }
         }
 
-
-
-        public bool IsMove { get; set; }
-
         public Character(int _x, int _y, int _height, int _width, Rotations _rotation) : base(_x, _y, _height, _width, _rotation)
         {
             Collider = new Collider(X, Y, Width, Height);

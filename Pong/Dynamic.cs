@@ -86,97 +86,37 @@ namespace Pong
             switch (ball.MoveRotation)
             {
                 case Rotations.RIGHT_UP:
-                   
-                    // if character is moving and its rotation is down
-                    if (character.IsMove && character.MoveRotation == Rotations.DOWN)
-                    {
-                        ball.MoveRotation = Rotations.LEFT;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.LEFT_UP;
-                    }
-                    
+
+                    ball.MoveRotation = Rotations.LEFT_UP;
+              
                     break;
 
                 case Rotations.RIGHT:
-                    // if character is moving and its rotation is top
-                    if (character.IsMove && character.MoveRotation == Rotations.TOP)
-                    {
-                        ball.MoveRotation = Rotations.LEFT_DOWN;
-                    }
-                    // if character is moving and its rotation is down
-                    else if (character.IsMove && character.MoveRotation == Rotations.DOWN)
-                    {
-                        ball.MoveRotation = Rotations.LEFT_UP;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.LEFT;
-                    }
+               
+                    ball.MoveRotation = Rotations.LEFT;
 
                     break;
 
                 case Rotations.RIGHT_DOWN:
-                    // if character is moving and its rotation is top
-                    if (character.IsMove && character.MoveRotation == Rotations.TOP)
-                    {
-                        ball.MoveRotation = Rotations.LEFT;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.LEFT_DOWN;
-                    }
-
-                    break;
+                  
+                   ball.MoveRotation = Rotations.LEFT_DOWN;
+                   break;
 
                 case Rotations.LEFT_DOWN:
-                    // if character is moving and its rotation is top
-                    if (character.IsMove && character.MoveRotation == Rotations.TOP)
-                    {
-                        ball.MoveRotation = Rotations.RIGHT;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.RIGHT_DOWN;
-                    }
-
+                   
+                    ball.MoveRotation = Rotations.RIGHT_DOWN;
                     break;
 
                 case Rotations.LEFT:
-                    // if character is moving and its rotation is top
-                    if (character.IsMove && character.MoveRotation == Rotations.TOP)
-                    {
-                        ball.MoveRotation = Rotations.RIGHT_DOWN;
-                    }
-                    // if character is moving and its rotation is down
-                    else if (character.IsMove && character.MoveRotation == Rotations.DOWN)
-                    {
-                        ball.MoveRotation = Rotations.RIGHT_UP;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.RIGHT;
-                    }
 
+                    ball.MoveRotation = Rotations.RIGHT;
+                    
                     break;
 
                 case Rotations.LEFT_UP:
-                    // if character is moving and its rotation is down
-                    if (character.IsMove && character.MoveRotation == Rotations.DOWN)
-                    {
-                        ball.MoveRotation = Rotations.RIGHT;
-                    }
-                    // if character is not moving
-                    else
-                    {
-                        ball.MoveRotation = Rotations.RIGHT_UP;
-                    }
+
+                    ball.MoveRotation = Rotations.RIGHT_UP;
+                    
 
                     break;
 
